@@ -1,8 +1,8 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import Logo from "@/components/logo.vue";
-import NavigationLink from "@/components/NavigationLink.vue";
-import UserLogin from "@/components/UserLogin.vue";
+import Logo from "@/components/Navbar/logo.vue";
+import NavigationLink from "@/components/Navbar/NavigationLink.vue";
+import UserLogin from "@/components/Navbar/UserLogin.vue";
 </script>
 
 <template>
