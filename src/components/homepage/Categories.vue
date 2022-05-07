@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import CategoriesCard from "@/components/CategoriesCard.vue";
+import CategoriesCard from "@/components/homepage/TopCategories/CategoriesCard.vue";
 
 const categories = ref([
   { id: 1, title: "Mobile UI Kit", count: 731, image: "categories-1.jpg" },

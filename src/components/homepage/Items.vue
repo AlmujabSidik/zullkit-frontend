@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import ItemsCards from "@/components/ItemsCards.vue";
+import ItemsCards from "@/components/homepage/NewItems/ItemsCards.vue";
 
 const Items = ref([
   { id: 1, title: "Mobile UI Kit", image: "items-1.jpg", detail: "Mobile UI Kit" },
