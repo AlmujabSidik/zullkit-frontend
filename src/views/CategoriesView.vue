@@ -8,7 +8,7 @@ const categories = ref([]);
 async function getCategoriesData() {
   try {
     const response = await axios.get(
-      "https://zullkit-backend.buildwithangga.id/api/categories?show_product="
+      "https://zullkit-backend.buildwithangga.id/api/categories"
     );
     categories.value = response.data.data.data;
   } catch (error) {
@@ -23,7 +23,7 @@ onMounted(() => {
 
 <template>
   <div class="container px-4 mx-auto my-16 md:px-12" id="categories">
-    <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">Top Categories</h2>
+    <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">All Categories</h2>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
       <CategoriesCard
         v-for="category in categories"
@@ -32,17 +32,6 @@ onMounted(() => {
         :count="category.products_count"
         :image="category.thumbnails"
       />
-    </div>
-
-    <div class="mt-5 sm:mt-8 flex justify-center lg:justify-center">
-      <div class="rounded-full">
-        <RouterLink
-          to="/categories"
-          class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-navy border border-transparent rounded-full hover:bg-gray-800 md:py-2 md:text-lg md:px-10 hover:shadow"
-        >
-          See Categories
-        </RouterLink>
-      </div>
     </div>
   </div>
 </template>
