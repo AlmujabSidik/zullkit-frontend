@@ -1,12 +1,41 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
+import axios from "axios";
 
-const register = ref({
+import { useUserStore } from "@/stores/user"
+
+const userStore = useUserStore()
+const router = useRouter()
+
+const form = ref({
   name: "",
   email: "",
   password: "",
+  title: "Designer"
 });
+
+async function register() {
+  try {
+    const response = await axios.post(
+      "https://zullkit-backend.buildwithangga.id/api/register", {
+          name: form.value.name,
+          email: form.value.email,
+          password: form.value.password,
+          title: form.value.title,
+      }
+    );
+    localStorage.setItem('access_token', response.data.data.access_token)
+    localStorage.setItem('token_type', response.data.data.token_type)
+
+    userStore.fetchUser();
+    router.push('/')
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 </script>
 
 <template>
@@ -14,7 +43,7 @@ const register = ref({
     <div class="mb-4">
       <label class="block mb-1" for="name">Name</label>
       <input
-        v-model="register.name"
+        v-model="form.name"
         placeholder="Type your full name"
         id="name"
         type="text"
@@ -25,7 +54,7 @@ const register = ref({
     <div class="mb-4">
       <label class="block mb-1" for="email">Email Address</label>
       <input
-        v-model="register.email"
+        v-model="form.email"
         placeholder="Type your email"
         id="email"
         type="text"
@@ -36,7 +65,8 @@ const register = ref({
     <div class="mb-4">
       <label class="block mb-1" for="password">Password</label>
       <input
-        v-model="register.password"
+      @keyup.enter="register"
+        v-model="form.password"
         placeholder="Type your password"
         id="password"
         type="password"
@@ -46,6 +76,7 @@ const register = ref({
     </div>
     <div class="mt-6">
       <button
+        @click="register"
         type="button"
         class="inline-flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-700 md:py-2 md:text-lg md:px-10 hover:shadow"
       >
@@ -53,7 +84,6 @@ const register = ref({
       </button>
       <RouterLink
         to="/login"
-        type="button"
         class="inline-flex items-center justify-center w-full px-8 py-3 mt-2 text-base font-medium text-black bg-gray-200 border border-transparent rounded-full hover:bg-gray-300 md:py-2 md:text-lg md:px-10 hover:shadow"
       >
         Sign In

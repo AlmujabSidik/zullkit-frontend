@@ -1,7 +1,9 @@
 <script setup>
-import AllCategories from "@/components/categories/AllCategories.vue";
+  import Categories from '@/components/categories/Categories.vue'
 </script>
 
 <template>
-  <AllCategories />
+  <main>
+    <Categories />
+  </main>
 </template>

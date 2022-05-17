@@ -1,7 +1,9 @@
 <script setup>
-import Items from "@/components/categories/Items.vue";
+  import Items from '@/components/categories/Items.vue'
 </script>
 
 <template>
-  <Items />
+  <main>
+    <Items />
+  </main>
 </template>
